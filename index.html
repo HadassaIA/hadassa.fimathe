@@ -283,4 +283,102 @@
                         <span class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">O suporte ajuda na instalação?</span>
                         <i data-lucide="chevron-down" class="w-5 h-5 text-zinc-500 transition-transform duration-300"></i>
                     </button>
-                    <div class="faq-answer max-h-0 overflow-hidden transition-all durat
+                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
+                        <p class="pb-6 text-zinc-400 leading-relaxed">Com certeza! Oferecemos tutoriais em vídeo passo a passo e disponibilizamos arquivos de configuração (.set) otimizados.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-32">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="fade-up relative p-16 rounded-[48px] bg-gradient-main overflow-hidden text-center">
+                <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+                <div class="relative z-10">
+                    <h2 class="text-4xl md:text-6xl font-display font-black text-white mb-8 uppercase tracking-tighter uppercase">Automatize sua estratégia hoje</h2>
+                    <p class="text-xl text-white/80 max-w-2xl mx-auto mb-12">Pare de lutar contra o mercado e comece a operar com a vantagem tecnológica que você merece.</p>
+                    <a href="https://pay.hotmart.com/I104582582H" target="_blank" class="inline-flex items-center gap-3 px-12 py-6 rounded-full bg-white text-black font-black text-xl hover:scale-105 transition-all shadow-2xl shadow-black/20">
+                        GARANTIR MEU ACESSO
+                        <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 border-t border-white/10 bg-black">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex items-center justify-center gap-2 mb-8">
+                <i data-lucide="cpu" class="w-6 h-6 text-blue-500"></i>
+                <span class="font-display font-black text-xl tracking-tighter text-white uppercase">HADASSA <span className="text-blue-500">IA</span></span>
+            </div>
+            <p class="text-zinc-500 text-sm mb-8">© 2024 HADASSA IA — CNPJ: XX.XXX.XXX/0001-XX</p>
+            <div class="max-w-3xl mx-auto p-6 rounded-2xl bg-white/[0.02] border border-white/5 text-zinc-600 text-[10px] leading-relaxed uppercase tracking-widest">
+                Aviso: O mercado financeiro envolve riscos. Resultados passados não garantem lucros futuros. O uso de robôs de investimento não elimina o risco de perda de capital. Utilize sempre um gerenciamento de risco adequado.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Inicializar ícones
+        lucide.createIcons();
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-black/80', 'backdrop-blur-lg', 'border-b', 'border-white/10', 'py-4');
+                nav.classList.remove('bg-transparent', 'py-6');
+            } else {
+                nav.classList.remove('bg-black/80', 'backdrop-blur-lg', 'border-b', 'border-white/10', 'py-4');
+                nav.classList.add('bg-transparent', 'py-6');
+            }
+        });
+
+        // Fade Up Animation on Scroll
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // FAQ Toggle
+        function toggleFAQ(button) {
+            const container = button.parentElement;
+            const answer = container.querySelector('.faq-answer');
+            const icon = button.querySelector('i');
+            const isOpen = container.classList.contains('active');
+
+            // Fechar outros
+            document.querySelectorAll('.border-b').forEach(item => {
+                if (item !== container) {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-answer').style.maxHeight = '0';
+                    const otherIcon = item.querySelector('i');
+                    if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+                }
+            });
+
+            if (!isOpen) {
+                container.classList.add('active');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+                icon.classList.add('text-blue-500');
+            } else {
+                container.classList.remove('active');
+                answer.style.maxHeight = '0';
+                icon.style.transform = 'rotate(0deg)';
+                icon.classList.remove('text-blue-500');
+            }
+        }
+    </script>
+</body>
+</html>
