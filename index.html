@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HADASSA IA - Automação Profissional FIMATHE no MT5</title>
-    <meta name="description" content="Domine o mercado com o Hadassa IA. Automação precisa da estratégia FIMATHE para MetaTrader 5.">
+    <meta name="description" content="Domine o mercado com o Hadassa IA. Automação precisa da estratégia FIMATHE para MetaTrader 5 com gerenciamento de risco avançado.">
     
     <!-- Fontes -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -46,6 +46,9 @@
         ::-webkit-scrollbar-track { background: #050505; }
         ::-webkit-scrollbar-thumb { background: #18181b; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #27272a; }
+
+        /* FAQ Transition */
+        .faq-answer { transition: max-height 0.3s ease-out, opacity 0.3s ease-out; }
     </style>
 </head>
 <body class="selection:bg-blue-500/30 overflow-x-hidden">
@@ -251,7 +254,7 @@
         <div class="max-w-3xl mx-auto px-6">
             <div class="text-center mb-20">
                 <div class="fade-up">
-                    <h2 class="text-4xl md:text-6xl font-display font-black mb-6 uppercase tracking-tighter uppercase">FAQ</h2>
+                    <h2 class="text-4xl md:text-6xl font-display font-black mb-6 uppercase tracking-tighter">FAQ</h2>
                     <p class="text-zinc-400">Tire suas dúvidas sobre o funcionamento do Hadassa IA.</p>
                 </div>
             </div>
@@ -263,18 +266,18 @@
                         <span class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">Funciona em quais ativos?</span>
                         <i data-lucide="chevron-down" class="w-5 h-5 text-zinc-500 transition-transform duration-300"></i>
                     </button>
-                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
+                    <div class="faq-answer max-h-0 opacity-0 overflow-hidden transition-all duration-300">
                         <p class="pb-6 text-zinc-400 leading-relaxed">O Hadassa IA é versátil e funciona em qualquer ativo disponível no MetaTrader 5: HK50, Ouro (XAUUSD), Índices (Nasdaq, S&P500), Forex e até ativos da B3.</p>
                     </div>
                 </div>
                 <!-- FAQ Item 2 -->
                 <div class="border-b border-white/10 last:border-0">
                     <button onclick="toggleFAQ(this)" class="w-full py-6 flex items-center justify-between text-left group">
-                        <span class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">Preciso de muito capital?</span>
+                        <span class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">Preciso de muito capital para começar?</span>
                         <i data-lucide="chevron-down" class="w-5 h-5 text-zinc-500 transition-transform duration-300"></i>
                     </button>
-                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
-                        <p class="pb-6 text-zinc-400 leading-relaxed">Não. O robô é totalmente configurável. Você pode ajustar o tamanho do lote de acordo com sua banca, permitindo operar até em contas pequenas.</p>
+                    <div class="faq-answer max-h-0 opacity-0 overflow-hidden transition-all duration-300">
+                        <p class="pb-6 text-zinc-400 leading-relaxed">Não. O robô é totalmente configurável. Você pode ajustar o tamanho do lote de acordo com sua banca, permitindo operar até em contas pequenas (Contas Cent ou Standard).</p>
                     </div>
                 </div>
                 <!-- FAQ Item 3 -->
@@ -283,8 +286,18 @@
                         <span class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">O suporte ajuda na instalação?</span>
                         <i data-lucide="chevron-down" class="w-5 h-5 text-zinc-500 transition-transform duration-300"></i>
                     </button>
-                    <div class="faq-answer max-h-0 overflow-hidden transition-all duration-300">
-                        <p class="pb-6 text-zinc-400 leading-relaxed">Com certeza! Oferecemos tutoriais em vídeo passo a passo e disponibilizamos arquivos de configuração (.set) otimizados.</p>
+                    <div class="faq-answer max-h-0 opacity-0 overflow-hidden transition-all duration-300">
+                        <p class="pb-6 text-zinc-400 leading-relaxed">Com certeza! Oferecemos tutoriais em vídeo passo a passo e disponibilizamos arquivos de configuração (.set) otimizados para os principais ativos.</p>
+                    </div>
+                </div>
+                <!-- FAQ Item 4 -->
+                <div class="border-b border-white/10 last:border-0">
+                    <button onclick="toggleFAQ(this)" class="w-full py-6 flex items-center justify-between text-left group">
+                        <span class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">É uma licença única ou mensalidade?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-zinc-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 opacity-0 overflow-hidden transition-all duration-300">
+                        <p class="pb-6 text-zinc-400 leading-relaxed">Nesta oferta, você garante o acesso vitalício. Sem mensalidades, sem taxas ocultas. Pague uma vez e use para sempre.</p>
                     </div>
                 </div>
             </div>
@@ -297,7 +310,7 @@
             <div class="fade-up relative p-16 rounded-[48px] bg-gradient-main overflow-hidden text-center">
                 <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
                 <div class="relative z-10">
-                    <h2 class="text-4xl md:text-6xl font-display font-black text-white mb-8 uppercase tracking-tighter uppercase">Automatize sua estratégia hoje</h2>
+                    <h2 class="text-4xl md:text-6xl font-display font-black text-white mb-8 uppercase tracking-tighter">Automatize sua estratégia hoje</h2>
                     <p class="text-xl text-white/80 max-w-2xl mx-auto mb-12">Pare de lutar contra o mercado e comece a operar com a vantagem tecnológica que você merece.</p>
                     <a href="https://pay.hotmart.com/I104582582H" target="_blank" class="inline-flex items-center gap-3 px-12 py-6 rounded-full bg-white text-black font-black text-xl hover:scale-105 transition-all shadow-2xl shadow-black/20">
                         GARANTIR MEU ACESSO
@@ -313,7 +326,7 @@
         <div class="max-w-7xl mx-auto px-6 text-center">
             <div class="flex items-center justify-center gap-2 mb-8">
                 <i data-lucide="cpu" class="w-6 h-6 text-blue-500"></i>
-                <span class="font-display font-black text-xl tracking-tighter text-white uppercase">HADASSA <span className="text-blue-500">IA</span></span>
+                <span class="font-display font-black text-xl tracking-tighter text-white uppercase">HADASSA <span class="text-blue-500">IA</span></span>
             </div>
             <p class="text-zinc-500 text-sm mb-8">© 2024 HADASSA IA — CNPJ: XX.XXX.XXX/0001-XX</p>
             <div class="max-w-3xl mx-auto p-6 rounded-2xl bg-white/[0.02] border border-white/5 text-zinc-600 text-[10px] leading-relaxed uppercase tracking-widest">
@@ -350,31 +363,41 @@
 
         document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-        // FAQ Toggle
+        // FAQ Toggle Logic
         function toggleFAQ(button) {
             const container = button.parentElement;
             const answer = container.querySelector('.faq-answer');
             const icon = button.querySelector('i');
             const isOpen = container.classList.contains('active');
 
-            // Fechar outros
+            // Fechar outros itens abertos
             document.querySelectorAll('.border-b').forEach(item => {
                 if (item !== container) {
                     item.classList.remove('active');
-                    item.querySelector('.faq-answer').style.maxHeight = '0';
-                    const otherIcon = item.querySelector('i');
-                    if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
+                    const otherAnswer = item.querySelector('.faq-answer');
+                    if (otherAnswer) {
+                        otherAnswer.style.maxHeight = '0';
+                        otherAnswer.classList.add('opacity-0');
+                    }
+                    const otherIcon = item.querySelector('i[data-lucide="chevron-down"]');
+                    if (otherIcon) {
+                        otherIcon.style.transform = 'rotate(0deg)';
+                        otherIcon.classList.remove('text-blue-500');
+                    }
                 }
             });
 
+            // Alternar o item atual
             if (!isOpen) {
                 container.classList.add('active');
                 answer.style.maxHeight = answer.scrollHeight + 'px';
+                answer.classList.remove('opacity-0');
                 icon.style.transform = 'rotate(180deg)';
                 icon.classList.add('text-blue-500');
             } else {
                 container.classList.remove('active');
                 answer.style.maxHeight = '0';
+                answer.classList.add('opacity-0');
                 icon.style.transform = 'rotate(0deg)';
                 icon.classList.remove('text-blue-500');
             }
