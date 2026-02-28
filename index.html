@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HADASSA IA - Automação Profissional FIMATHE no MT5</title>
+    <meta name="description" content="Domine o mercado com o Hadassa IA. Automação precisa da estratégia FIMATHE para MetaTrader 5 com gerenciamento de risco avançado.">
     
     <!-- Fontes -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -45,6 +46,9 @@
         ::-webkit-scrollbar-track { background: #050505; }
         ::-webkit-scrollbar-thumb { background: #18181b; border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: #27272a; }
+
+        /* FAQ Transition */
+        .faq-answer { transition: max-height 0.3s ease-out, opacity 0.3s ease-out; }
     </style>
 </head>
 <body class="selection:bg-blue-500/30 overflow-x-hidden">
@@ -60,7 +64,6 @@
             </div>
             
             <div class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
-                <a href="#demo" class="hover:text-white transition-colors">Demo</a>
                 <a href="#features" class="hover:text-white transition-colors">Vantagens</a>
                 <a href="#comparison" class="hover:text-white transition-colors">Comparativo</a>
                 <a href="#methodology" class="hover:text-white transition-colors">Metodologia</a>
@@ -110,37 +113,8 @@
 
             <div class="fade-up mt-16 flex flex-wrap items-center justify-center gap-8 text-xs font-bold text-zinc-500 uppercase tracking-widest" style="transition-delay: 400ms;">
                 <div class="flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4 text-emerald-500"></i> Garantia de 7 Dias</div>
-                <div className="flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-emerald-500"></i> Acesso Vitalício</div>
-                <div className="flex items-center gap-2"><i data-lucide="lock" class="w-4 h-4 text-emerald-500"></i> Licença Ilimitada</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Video Demo Section -->
-    <section id="demo" class="py-32 relative overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <div class="fade-up">
-                    <h2 class="text-4xl md:text-6xl font-display font-black mb-6 uppercase tracking-tighter">Hadassa IA em Ação</h2>
-                    <p class="text-zinc-400 max-w-2xl mx-auto">Veja como a inteligência artificial domina a estratégia Fimathe com precisão cirúrgica.</p>
-                </div>
-            </div>
-
-            <div class="fade-up relative aspect-video rounded-[48px] overflow-hidden bg-zinc-900 border border-white/10 shadow-2xl group" style="transition-delay: 200ms;">
-                <div id="video-placeholder" class="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
-                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-emerald-500/10 mix-blend-overlay"></div>
-                    <div class="space-y-8 max-w-lg relative z-10">
-                        <div class="w-20 h-20 rounded-3xl bg-white/5 flex items-center justify-center mx-auto">
-                            <i data-lucide="play" class="w-10 h-10 text-blue-500"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold text-white">Demonstração da Estratégia</h3>
-                        <p class="text-zinc-400">Assista como o robô identifica canais, projeta alvos e executa o gerenciamento de risco automático.</p>
-                        <button onclick="alert('Funcionalidade de geração de vídeo requer ambiente AI Studio. Em HTML estático, você pode substituir este bloco por um vídeo do YouTube ou MP4 local.')" class="px-8 py-4 rounded-full bg-blue-500 text-white font-black hover:bg-blue-400 transition-all flex items-center gap-3 mx-auto shadow-xl shadow-blue-500/20">
-                            <i data-lucide="sparkles" class="w-5 h-5"></i>
-                            VER DEMONSTRAÇÃO
-                        </button>
-                    </div>
-                </div>
+                <div class="flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-emerald-500"></i> Acesso Vitalício</div>
+                <div class="flex items-center gap-2"><i data-lucide="lock" class="w-4 h-4 text-emerald-500"></i> Licença Ilimitada</div>
             </div>
         </div>
     </section>
@@ -289,4 +263,145 @@
                 <!-- FAQ Item 1 -->
                 <div class="border-b border-white/10 last:border-0">
                     <button onclick="toggleFAQ(this)" class="w-full py-6 flex items-center justify-between text-left group">
-                        <span class="text-lg font-bold text-white group-hover:text-blue-4
+                        <span class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">Funciona em quais ativos?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-zinc-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 opacity-0 overflow-hidden transition-all duration-300">
+                        <p class="pb-6 text-zinc-400 leading-relaxed">O Hadassa IA é versátil e funciona em qualquer ativo disponível no MetaTrader 5: HK50, Ouro (XAUUSD), Índices (Nasdaq, S&P500), Forex e até ativos da B3.</p>
+                    </div>
+                </div>
+                <!-- FAQ Item 2 -->
+                <div class="border-b border-white/10 last:border-0">
+                    <button onclick="toggleFAQ(this)" class="w-full py-6 flex items-center justify-between text-left group">
+                        <span class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">Preciso de muito capital para começar?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-zinc-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 opacity-0 overflow-hidden transition-all duration-300">
+                        <p class="pb-6 text-zinc-400 leading-relaxed">Não. O robô é totalmente configurável. Você pode ajustar o tamanho do lote de acordo com sua banca, permitindo operar até em contas pequenas (Contas Cent ou Standard).</p>
+                    </div>
+                </div>
+                <!-- FAQ Item 3 -->
+                <div class="border-b border-white/10 last:border-0">
+                    <button onclick="toggleFAQ(this)" class="w-full py-6 flex items-center justify-between text-left group">
+                        <span class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">O suporte ajuda na instalação?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-zinc-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 opacity-0 overflow-hidden transition-all duration-300">
+                        <p class="pb-6 text-zinc-400 leading-relaxed">Com certeza! Oferecemos tutoriais em vídeo passo a passo e disponibilizamos arquivos de configuração (.set) otimizados para os principais ativos.</p>
+                    </div>
+                </div>
+                <!-- FAQ Item 4 -->
+                <div class="border-b border-white/10 last:border-0">
+                    <button onclick="toggleFAQ(this)" class="w-full py-6 flex items-center justify-between text-left group">
+                        <span class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">É uma licença única ou mensalidade?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-zinc-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 opacity-0 overflow-hidden transition-all duration-300">
+                        <p class="pb-6 text-zinc-400 leading-relaxed">Nesta oferta, você garante o acesso vitalício. Sem mensalidades, sem taxas ocultas. Pague uma vez e use para sempre.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-32">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="fade-up relative p-16 rounded-[48px] bg-gradient-main overflow-hidden text-center">
+                <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+                <div class="relative z-10">
+                    <h2 class="text-4xl md:text-6xl font-display font-black text-white mb-8 uppercase tracking-tighter">Automatize sua estratégia hoje</h2>
+                    <p class="text-xl text-white/80 max-w-2xl mx-auto mb-12">Pare de lutar contra o mercado e comece a operar com a vantagem tecnológica que você merece.</p>
+                    <a href="https://pay.hotmart.com/I104582582H" target="_blank" class="inline-flex items-center gap-3 px-12 py-6 rounded-full bg-white text-black font-black text-xl hover:scale-105 transition-all shadow-2xl shadow-black/20">
+                        GARANTIR MEU ACESSO
+                        <i data-lucide="chevron-right" class="w-6 h-6"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 border-t border-white/10 bg-black">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <div class="flex items-center justify-center gap-2 mb-8">
+                <i data-lucide="cpu" class="w-6 h-6 text-blue-500"></i>
+                <span class="font-display font-black text-xl tracking-tighter text-white uppercase">HADASSA <span class="text-blue-500">IA</span></span>
+            </div>
+            <p class="text-zinc-500 text-sm mb-8">© 2024 HADASSA IA — CNPJ: XX.XXX.XXX/0001-XX</p>
+            <div class="max-w-3xl mx-auto p-6 rounded-2xl bg-white/[0.02] border border-white/5 text-zinc-600 text-[10px] leading-relaxed uppercase tracking-widest">
+                Aviso: O mercado financeiro envolve riscos. Resultados passados não garantem lucros futuros. O uso de robôs de investimento não elimina o risco de perda de capital. Utilize sempre um gerenciamento de risco adequado.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Inicializar ícones
+        lucide.createIcons();
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-black/80', 'backdrop-blur-lg', 'border-b', 'border-white/10', 'py-4');
+                nav.classList.remove('bg-transparent', 'py-6');
+            } else {
+                nav.classList.remove('bg-black/80', 'backdrop-blur-lg', 'border-b', 'border-white/10', 'py-4');
+                nav.classList.add('bg-transparent', 'py-6');
+            }
+        });
+
+        // Fade Up Animation on Scroll
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // FAQ Toggle Logic
+        function toggleFAQ(button) {
+            const container = button.parentElement;
+            const answer = container.querySelector('.faq-answer');
+            const icon = button.querySelector('i');
+            const isOpen = container.classList.contains('active');
+
+            // Fechar outros itens abertos
+            document.querySelectorAll('.border-b').forEach(item => {
+                if (item !== container) {
+                    item.classList.remove('active');
+                    const otherAnswer = item.querySelector('.faq-answer');
+                    if (otherAnswer) {
+                        otherAnswer.style.maxHeight = '0';
+                        otherAnswer.classList.add('opacity-0');
+                    }
+                    const otherIcon = item.querySelector('i[data-lucide="chevron-down"]');
+                    if (otherIcon) {
+                        otherIcon.style.transform = 'rotate(0deg)';
+                        otherIcon.classList.remove('text-blue-500');
+                    }
+                }
+            });
+
+            // Alternar o item atual
+            if (!isOpen) {
+                container.classList.add('active');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                answer.classList.remove('opacity-0');
+                icon.style.transform = 'rotate(180deg)';
+                icon.classList.add('text-blue-500');
+            } else {
+                container.classList.remove('active');
+                answer.style.maxHeight = '0';
+                answer.classList.add('opacity-0');
+                icon.style.transform = 'rotate(0deg)';
+                icon.classList.remove('text-blue-500');
+            }
+        }
+    </script>
+</body>
+</html>
