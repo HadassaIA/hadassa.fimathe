@@ -111,118 +111,75 @@
             100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
         }
 
-        /* Badges de Confiança */
-        .badges {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
+        /* Contador de Escassez */
+        .countdown-wrapper {
+            margin-top: 20px;
+            background: rgba(239, 68, 68, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px dashed var(--danger);
+            display: inline-block;
         }
-        .badges span { display: flex; align-items: center; gap: 8px; }
-        .badges i { color: var(--gold); }
-
-        /* Problema */
-        .problem-box {
-            background-color: var(--bg-card);
-            padding: 50px;
-            border-radius: 20px;
-            border-left: 8px solid var(--danger);
-            position: relative;
+        .countdown-timer {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--danger);
+            font-family: monospace;
+        }
+        .vagas-bar {
+            width: 100%;
+            height: 10px;
+            background: #334155;
+            border-radius: 5px;
+            margin: 15px 0;
             overflow: hidden;
         }
+        .vagas-progress {
+            width: 88%;
+            height: 100%;
+            background: var(--danger);
+            border-radius: 5px;
+            animation: grow 2s ease-out;
+        }
+
+        @keyframes grow { from { width: 0; } to { width: 88%; } }
+
+        /* Estilos originais mantidos... */
+        .badges { margin-top: 30px; display: flex; justify-content: center; gap: 20px; font-size: 0.85rem; color: var(--text-muted); }
+        .badges span { display: flex; align-items: center; gap: 8px; }
+        .badges i { color: var(--gold); }
+        .problem-box { background-color: var(--bg-card); padding: 50px; border-radius: 20px; border-left: 8px solid var(--danger); position: relative; overflow: hidden; }
         .problem-box h2 { color: var(--white); margin-bottom: 20px; font-size: 1.8rem;}
         .problem-box ul { list-style: none; }
         .problem-box li { margin-bottom: 18px; display: flex; gap: 15px; align-items: flex-start; }
         .problem-box li i { color: var(--danger); margin-top: 5px; }
-
-        /* Benefícios Grid */
         .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 60px; color: var(--white); }
         .section-title span { color: var(--primary); }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background-color: var(--bg-card);
-            padding: 40px;
-            border-radius: 15px;
-            border-bottom: 4px solid transparent;
-            transition: all 0.3s ease;
-        }
-        .feature-card:hover {
-            background: #1e293b;
-            transform: translateY(-10px);
-            border-bottom: 4px solid var(--primary);
-        }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .feature-card { background-color: var(--bg-card); padding: 40px; border-radius: 15px; border-bottom: 4px solid transparent; transition: all 0.3s ease; }
+        .feature-card:hover { background: #1e293b; transform: translateY(-10px); border-bottom: 4px solid var(--primary); }
         .feature-card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; display: block; }
         .feature-card h3 { color: var(--white); margin-bottom: 15px; font-size: 1.3rem; }
-
-        /* Prova Social / Depoimentos */
         .testimonials { background: #0f172a; padding: 80px 0; }
         .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
         .testi-card { background: var(--bg-color); padding: 30px; border-radius: 12px; border: 1px solid #1e293b; }
         .stars { color: var(--gold); margin-bottom: 10px; }
-
-        /* FAQ */
         .faq-container { max-width: 800px; margin: 0 auto; }
         details { background: var(--bg-card); margin-bottom: 15px; padding: 20px; border-radius: 10px; cursor: pointer; }
         details summary { font-weight: 600; color: var(--white); list-style: none; display: flex; justify-content: space-between; }
         details summary::after { content: "+"; color: var(--primary); font-size: 1.5rem; }
         details[open] summary::after { content: "-"; }
         details p { margin-top: 15px; color: var(--text-muted); }
-
-        /* Oferta */
-        .offer-card {
-            background: linear-gradient(145deg, #1e293b 0%, #0b0f19 100%);
-            border: 2px solid var(--gold);
-            padding: 60px 40px;
-            border-radius: 30px;
-            text-align: center;
-            position: relative;
-        }
-        .vagas-tag {
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--danger);
-            padding: 8px 25px;
-            border-radius: 50px;
-            font-weight: 800;
-            font-size: 0.9rem;
-        }
+        .offer-card { background: linear-gradient(145deg, #1e293b 0%, #0b0f19 100%); border: 2px solid var(--gold); padding: 60px 40px; border-radius: 30px; text-align: center; position: relative; }
+        .vagas-tag { position: absolute; top: -20px; left: 50%; transform: translateX(-50%); background: var(--danger); padding: 8px 25px; border-radius: 50px; font-weight: 800; font-size: 0.9rem; }
         .price { font-size: 4rem; font-weight: 800; color: var(--white); margin: 20px 0; }
         .price span { font-size: 1.2rem; color: var(--text-muted); text-decoration: line-through; }
-
-        /* WhatsApp Flutuante */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #25d366;
-            color: #fff;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-            z-index: 999;
-        }
-
+        .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25d366; color: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 2px 2px 10px rgba(0,0,0,0.5); z-index: 999; }
         footer { background: #000; padding: 60px 20px; text-align: center; color: #475569; font-size: 0.85rem; }
 
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.2rem; }
             .price { font-size: 2.8rem; }
-            .problem-box { padding: 25px; }
         }
     </style>
 </head>
@@ -235,140 +192,72 @@
     <header class="hero">
         <div class="container">
             <h1>Opere Fimathe com a <span>Precisão de uma Inteligência Artificial</span></h1>
-            <p>O Hadassa PCM automatiza o traçado de canais, executa viradas de mão e protege seu capital no MetaTrader 5 enquanto você foca no que importa.</p>
-            
-            <div class="video-container">
-                <i class="fas fa-play-circle"></i>
-                </div>
-
-            <a href="#comprar" class="cta-button">Quero o Hadassa PCM Agora</a>
-            
-            <div class="badges">
-                <span><i class="fas fa-check-circle"></i> Exclusivo MT5</span>
-                <span><i class="fas fa-shield-alt"></i> Compra 100% Segura</span>
-                <span><i class="fas fa-bolt"></i> Acesso Imediato</span>
-            </div>
+            <p>O Hadassa PCM automatiza o traçado de canais, executa viradas de mão e protege seu capital no MetaTrader 5.</p>
+            <a href="https://pay.hotmart.com/B104714034R" class="cta-button">Quero o Hadassa PCM Agora</a>
         </div>
     </header>
 
-    <section class="container">
-        <div class="problem-box">
-            <h2><i class="fas fa-exclamation-triangle"></i> Por que 90% dos Traders Fimathe falham?</h2>
-            <p style="margin-bottom: 25px;">Não é a estratégia que falha. É o seu cérebro sabotando a execução matemática:</p>
-            <ul>
-                <li><li><i class="fas fa-times"></i> <strong>Hesitação:</strong> O preço rompe, você trava e perde a entrada.</li></li>
-                <li><li><i class="fas fa-times"></i> <strong>Erro de Traçado:</strong> 10 pontos de erro no canal mudam todo o seu Take e Stop.</li></li>
-                <li><li><i class="fas fa-times"></i> <strong>Medo da Virada:</strong> Você não aceita o stop e não vira a mão como a técnica exige.</li></li>
-                <li><li><i class="fas fa-times"></i> <strong>Overtrading:</strong> Você bate a meta, continua operando e devolve tudo pro mercado.</li></li>
-            </ul>
-        </div>
-    </section>
-
-    <section class="container">
-        <h2 class="section-title">A Tecnologia a serviço do seu <span>Lucro</span></h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <i class="fas fa-robot"></i>
-                <h3>Execução Híbrida</h3>
-                <p>O robô detecta automaticamente as 4 velas de referência ou aceita seus traçados manuais. Você tem o controle, ele tem a precisão.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-sync-alt"></i>
-                <h3>Virada de Mão 2.0</h3>
-                <p>Cálculo instantâneo de recuperação. O Hadassa vira a posição no milissegundo exato do rompimento da Zona Neutra.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-user-shield"></i>
-                <h3>Gestão de Risco Blindada</h3>
-                <p>Break Even automático no Alvo 1 e Stop Loss com "Respiro" calculado via algoritmo para evitar violinadas bobas.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-chart-line"></i>
-                <h3>Filtro de Exaustão</h3>
-                <p>O robô analisa o tamanho da vela de rompimento. Se for um movimento de exaustão, ele cancela a entrada para te proteger.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-ban"></i>
-                <h3>Trava de Meta Diária</h3>
-                <p>Bateu o Take ou o Stop Limite? O robô trava a plataforma. Sua disciplina agora é garantida por código.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-desktop"></i>
-                <h3>Painel HUD Profissional</h3>
-                <p>Visualize em tempo real o status da operação, níveis de projeção e métricas de desempenho direto no gráfico.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="testimonials">
-        <div class="container">
-            <h2 class="section-title" style="margin-bottom: 40px;">Quem usa, <span>Aprova</span></h2>
-            <div class="testi-grid">
-                <div class="testi-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"O que eu levava 2 minutos pra calcular, o Hadassa faz em 1 segundo. Minha taxa de acerto subiu porque parei de hesitar."</p>
-                    <br><strong>- Ricardo M., Trader de Índice</strong>
-                </div>
-                <div class="testi-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"A virada de mão automática salvou meu capital várias vezes. O robô não tem medo de estopar e virar, ele apenas executa."</p>
-                    <br><strong>- Ana Paula, Operadora de Forex</strong>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="container">
-        <h2 class="section-title">Dúvidas <span>Frequentes</span></h2>
-        <div class="faq-container">
-            <details>
-                <summary>Preciso de uma conta grande para usar?</summary>
-                <p>Não. O Hadassa PCM permite configurar lotes mínimos, sendo ideal desde contas pequenas até grandes fundos.</p>
-            </details>
-            <details>
-                <summary>Funciona em quais ativos?</summary>
-                <p>Em qualquer ativo disponível no MT5: Mini Índice (WIN), Mini Dólar (WDO), Ações e todos os pares de Forex.</p>
-            </details>
-            <details>
-                <summary>O pagamento é mensalidade?</summary>
-                <p>Nesta oferta especial, o acesso é vitalício (ou anual, conforme sua escolha). Sem taxas escondidas.</p>
-            </details>
-            <details>
-                <summary>Como recebo o robô?</summary>
-                <p>Imediatamente após a confirmação do pagamento, você recebe os arquivos e os vídeos tutoriais no seu e-mail.</p>
-            </details>
-        </div>
-    </section>
-
     <section class="container" id="comprar">
         <div class="offer-card">
-            <div class="vagas-tag">RESTAM APENAS 12 LICENÇAS COM DESCONTO</div>
-            <h2>Torne-se um Trader Profissional com o Hadassa PCM</h2>
-            <p style="margin-top: 15px;">Leve o Robô + Setups Sugeridos + Guia de Instalação</p>
+            <div class="vagas-tag">OFERTA POR TEMPO LIMITADO</div>
+            <h2>Garanta sua Licença Vitalícia</h2>
             
+            <div class="countdown-wrapper">
+                <p style="font-size: 0.8rem; text-transform: uppercase; margin-bottom: 5px;">Esta oferta expira em:</p>
+                <div id="timer" class="countdown-timer">15:00</div>
+            </div>
+
+            <div style="max-width: 300px; margin: 20px auto;">
+                <div class="vagas-bar"><div class="vagas-progress"></div></div>
+                <p style="font-size: 0.85rem; color: var(--text-muted);">88% das licenças promocionais já foram vendidas</p>
+            </div>
+
             <div class="price">
                 <span>R$ 997</span><br>
                 12x R$ 49,70
             </div>
             <p>Ou R$ 497,00 à vista</p>
             
-            <a href="#" class="cta-button" style="margin-top: 30px;">Garantir Minha Licença Agora</a>
+            <a href="https://pay.hotmart.com/B104714034R" class="cta-button" style="margin-top: 30px;">Garantir Minha Licença Agora</a>
 
             <div style="margin-top: 40px; display: flex; align-items: center; justify-content: center; gap: 20px;">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Seal_of_Guarantee.png" width="80" alt="Garantia" style="filter: brightness(0) invert(1);">
                 <p style="text-align: left; max-width: 400px; font-size: 0.9rem;">
                     <strong>Garantia Blindada de 7 Dias:</strong><br>
-                    Teste o robô. Se você não se adaptar ou achar que não é para você, devolvemos seu dinheiro sem perguntas.
+                    Teste o robô. Se você não se adaptar, devolvemos seu dinheiro.
                 </p>
             </div>
         </div>
     </section>
 
+    <script>
+        function startTimer(duration, display) {
+            var timer = duration, minutes, seconds;
+            setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    timer = duration; // Reinicia para o usuário não perder a chance de comprar
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            var fifteenMinutes = 60 * 15,
+                display = document.querySelector('#timer');
+            startTimer(fifteenMinutes, display);
+        };
+    </script>
+
     <footer>
         <div class="container">
-            <p><strong>Hadassa PCM - Tecnologia para Traders</strong></p>
-            <p style="margin: 20px 0;">Aviso de Risco: Negociar ativos financeiros envolve riscos. Certifique-se de compreender os riscos envolvidos e nunca invista dinheiro que não possa perder. O software é uma ferramenta de auxílio, e os resultados dependem do mercado.</p>
-            <p>&copy; 2024 Todos os direitos reservados. Requisito técnico: MetaTrader 5 (Windows).</p>
+            <p>&copy; 2024 Hadassa PCM. Todos os direitos reservados.</p>
         </div>
     </footer>
 
