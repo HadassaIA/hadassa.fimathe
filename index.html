@@ -1,382 +1,273 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hadassa PCM - Domine a Fimathe no MT5</title>
+    <title>HADASSA IA - Tecnologia que traders comuns não têm</title>
+    <meta name="description" content="Automação Inteligente da FIMATHE com Execução em Tempo Real do CA Manual ao Rompimento — sem atraso, sem emoção, sem erro.">
     
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@400;500;600;700;800;900&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Orbitron', 'sans-serif'],
+                        accent: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        blue: { 500: '#0A84FF', 600: '#0070E0' },
+                        emerald: { 500: '#00C853', 600: '#00A344' },
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        :root {
-            --bg-color: #0b0f19;
-            --bg-card: #151b2b;
-            --text-main: #e2e8f0;
-            --text-muted: #94a3b8;
-            --primary: #3b82f6; 
-            --accent: #10b981; 
-            --danger: #ef4444; 
-            --gold: #fbbf24;
-            --white: #ffffff;
-        }
+        body { background-color: #050505; color: #f4f4f5; }
+        .fade-up { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.21, 0.47, 0.32, 0.98); }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+        .text-gradient { background: linear-gradient(to right, #0A84FF, #00C853); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .bg-gradient-main { background: linear-gradient(135deg, #0A84FF, #00C853); }
+        .glass { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(12px); }
+        
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: #18181b; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #27272a; }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 60px 0;
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 120px 20px 100px;
-            background: radial-gradient(circle at top, #1e293b 0%, var(--bg-color) 80%);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .hero h1 {
-            font-size: clamp(2rem, 5vw, 3.2rem);
-            font-weight: 800;
-            margin-bottom: 25px;
-            color: var(--white);
-            line-height: 1.1;
-        }
-
-        .hero h1 span { color: var(--primary); }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            max-width: 850px;
-            margin: 0 auto 45px;
-        }
-
-        /* Vídeo Placeholder */
-        .video-container {
-            max-width: 800px;
-            margin: 40px auto;
-            aspect-ratio: 16/9;
-            background: #000;
-            border: 3px solid var(--bg-card);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 50px rgba(59, 130, 246, 0.2);
-            position: relative;
-        }
-        .video-container i { font-size: 4rem; color: var(--primary); opacity: 0.8; }
-
-        /* CTA Botões */
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--accent) 0%, #059669 100%);
-            color: var(--white);
-            font-size: 1.3rem;
-            font-weight: 800;
-            text-decoration: none;
-            padding: 22px 50px;
-            border-radius: 50px;
-            text-transform: uppercase;
-            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4);
-            transition: all 0.3s ease;
-            animation: pulse 2s infinite;
-        }
-
-        .cta-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(16, 185, 129, 0.6);
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
-            70% { box-shadow: 0 0 0 20px rgba(16, 185, 129, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
-        }
-
-        /* Badges de Confiança */
-        .badges {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-        .badges span { display: flex; align-items: center; gap: 8px; }
-        .badges i { color: var(--gold); }
-
-        /* Problema */
-        .problem-box {
-            background-color: var(--bg-card);
-            padding: 50px;
-            border-radius: 20px;
-            border-left: 8px solid var(--danger);
-            position: relative;
-            overflow: hidden;
-        }
-        .problem-box h2 { color: var(--white); margin-bottom: 20px; font-size: 1.8rem;}
-        .problem-box ul { list-style: none; }
-        .problem-box li { margin-bottom: 18px; display: flex; gap: 15px; align-items: flex-start; }
-        .problem-box li i { color: var(--danger); margin-top: 5px; }
-
-        /* Benefícios Grid */
-        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 60px; color: var(--white); }
-        .section-title span { color: var(--primary); }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .feature-card {
-            background-color: var(--bg-card);
-            padding: 40px;
-            border-radius: 15px;
-            border-bottom: 4px solid transparent;
-            transition: all 0.3s ease;
-        }
-        .feature-card:hover {
-            background: #1e293b;
-            transform: translateY(-10px);
-            border-bottom: 4px solid var(--primary);
-        }
-        .feature-card i { font-size: 2.5rem; color: var(--primary); margin-bottom: 20px; display: block; }
-        .feature-card h3 { color: var(--white); margin-bottom: 15px; font-size: 1.3rem; }
-
-        /* Prova Social / Depoimentos */
-        .testimonials { background: #0f172a; padding: 80px 0; }
-        .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
-        .testi-card { background: var(--bg-color); padding: 30px; border-radius: 12px; border: 1px solid #1e293b; }
-        .stars { color: var(--gold); margin-bottom: 10px; }
-
-        /* FAQ */
-        .faq-container { max-width: 800px; margin: 0 auto; }
-        details { background: var(--bg-card); margin-bottom: 15px; padding: 20px; border-radius: 10px; cursor: pointer; }
-        details summary { font-weight: 600; color: var(--white); list-style: none; display: flex; justify-content: space-between; }
-        details summary::after { content: "+"; color: var(--primary); font-size: 1.5rem; }
-        details[open] summary::after { content: "-"; }
-        details p { margin-top: 15px; color: var(--text-muted); }
-
-        /* Oferta */
-        .offer-card {
-            background: linear-gradient(145deg, #1e293b 0%, #0b0f19 100%);
-            border: 2px solid var(--gold);
-            padding: 60px 40px;
-            border-radius: 30px;
-            text-align: center;
-            position: relative;
-        }
-        .vagas-tag {
-            position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--danger);
-            padding: 8px 25px;
-            border-radius: 50px;
-            font-weight: 800;
-            font-size: 0.9rem;
-        }
-        .price { font-size: 4rem; font-weight: 800; color: var(--white); margin: 20px 0; }
-        .price span { font-size: 1.2rem; color: var(--text-muted); text-decoration: line-through; }
-
-        /* WhatsApp Flutuante */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #25d366;
-            color: #fff;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 10px rgba(0,0,0,0.5);
-            z-index: 999;
-            transition: transform 0.3s ease;
-        }
-
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            color: #fff;
-        }
-
-        footer { background: #000; padding: 60px 20px; text-align: center; color: #475569; font-size: 0.85rem; }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .price { font-size: 2.8rem; }
-            .problem-box { padding: 25px; }
-        }
+        .faq-answer { transition: max-height 0.3s ease-out, opacity 0.3s ease-out; }
+        
+        /* Estilo do Relógio */
+        .timer-box { background: rgba(0, 0, 0, 0.3); padding: 10px; border-radius: 12px; min-width: 60px; border: 1px solid rgba(255,255,255,0.1); }
     </style>
 </head>
-<body>
+<body class="selection:bg-blue-500/30 overflow-x-hidden">
 
-    <a href="https://wa.me/5522988102360?text=Olá,%20gostaria%20de%20obter%20mais%20informações%20sobre%20a%20Hadassa%20PCM." class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
+    <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300 py-6">
+        <div class="max-w-7xl mx-auto px-6 flex items-center justify-between">
+            <div class="flex items-center gap-2 text-white">
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg shadow-blue-500/20 text-white">
+                    <i data-lucide="cpu" class="w-6 h-6"></i>
+                </div>
+                <span class="font-display font-black text-xl tracking-tighter uppercase">HADASSA <span class="text-blue-500">IA</span></span>
+            </div>
+            
+            <div class="hidden lg:flex items-center gap-8 text-sm font-medium text-zinc-400">
+                <a href="#features" class="hover:text-white transition-colors">Vantagens</a>
+                <a href="#comparison" class="hover:text-white transition-colors">Comparativo</a>
+                <a href="#methodology" class="hover:text-white transition-colors">Metodologia</a>
+                <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="https://www.instagram.com/hadassaia?igsh=MWhvaTJkczg2cHk4Zg==" 
+                   target="_blank" 
+                   class="hidden sm:flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 hover:border-blue-500/50 hover:bg-blue-500/5 transition-all group">
+                    <i data-lucide="instagram" class="w-4 h-4 text-zinc-400 group-hover:text-blue-500"></i>
+                    <span class="text-xs font-bold text-zinc-400 group-hover:text-white">@hadassaia</span>
+                </a>
+
+                <a href="https://chk.eduzz.com/VWGNB1R407?a=33986470" target="_blank" class="px-6 py-2.5 rounded-full bg-white text-black text-xs md:text-sm font-bold hover:bg-zinc-200 transition-all hover:scale-105 active:scale-95 shadow-lg">
+                    ACESSAR AGORA
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <a href="https://wa.me/5522988102360?text=Quero+testar+o+Hadassa+IA" target="_blank" class="fixed bottom-8 right-8 z-50 flex items-center gap-3 px-6 py-4 rounded-full bg-[#25D366] text-white font-bold shadow-2xl shadow-green-500/20 hover:scale-110 transition-transform">
+        <i data-lucide="message-circle" class="w-6 h-6"></i>
+        <span>Testar Grátis</span>
     </a>
 
-    <header class="hero">
-        <div class="container">
-            <h1>Opere Fimathe com a <span>Precisão de uma Inteligência Artificial</span></h1>
-            <p>O Hadassa PCM automatiza o traçado de canais, executa viradas de mão e protege seu capital no MetaTrader 5 enquanto você foca no que importa.</p>
-            
-            <div class="video-container">
-                <i class="fas fa-play-circle"></i>
-                </div>
-
-            <a href="https://pay.hotmart.com/B104714034R" class="cta-button" target="_blank">Quero o Hadassa PCM Agora</a>
-            
-            <div class="badges">
-                <span><i class="fas fa-check-circle"></i> Exclusivo MT5</span>
-                <span><i class="fas fa-shield-alt"></i> Compra 100% Segura</span>
-                <span><i class="fas fa-bolt"></i> Acesso Imediato</span>
-            </div>
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(10,132,255,0.15),transparent_50%)]"></div>
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1611974717483-36009bc7376c?q=80&w=2000&auto=format&fit=crop')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#050505]/50 to-[#050505]"></div>
         </div>
-    </header>
 
-    <section class="container">
-        <div class="problem-box">
-            <h2><i class="fas fa-exclamation-triangle"></i> Por que 90% dos Traders Fimathe falham?</h2>
-            <p style="margin-bottom: 25px;">Não é a estratégia que falha. É o seu cérebro sabotando a execução matemática:</p>
-            <ul>
-                <li><i class="fas fa-times"></i> <strong>Hesitação:</strong> O preço rompe, você trava e perde a entrada.</li>
-                <li><i class="fas fa-times"></i> <strong>Erro de Traçado:</strong> 10 pontos de erro no canal mudam todo o seu Take e Stop.</li>
-                <li><i class="fas fa-times"></i> <strong>Medo da Virada:</strong> Você não aceita o stop e não vira a mão como a técnica exige.</li>
-                <li><i class="fas fa-times"></i> <strong>Overtrading:</strong> Você bate a meta, continua operando e devolve tudo pro mercado.</li>
-            </ul>
-        </div>
-    </section>
+        <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
+            <div class="fade-up inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-500 text-xs font-bold tracking-widest uppercase mb-8">
+                <i data-lucide="zap" class="w-3 h-3"></i>
+                Automação Fimathe para MT5
+            </div>
+            
+            <h1 class="fade-up text-6xl md:text-8xl lg:text-9xl font-display font-black tracking-tighter leading-[0.9] mb-8 uppercase" style="transition-delay: 100ms;">
+                HADASSA <span class="text-gradient">IA</span>
+            </h1>
 
-    <section class="container">
-        <h2 class="section-title">A Tecnologia a serviço do seu <span>Lucro</span></h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <i class="fas fa-robot"></i>
-                <h3>Execução Híbrida</h3>
-                <p>O robô detecta automaticamente as 4 velas de referência ou aceita seus traçados manuais. Você tem o controle, ele tem a precisão.</p>
+            <p class="fade-up text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto mb-12 leading-relaxed font-accent" style="transition-delay: 200ms;">
+                A precisão matemática da estratégia <strong class="text-white">FIMATHE</strong> unida à tecnologia de ponta. Opere no MT5 com 100% de automação.
+            </p>
+
+            <div class="fade-up flex flex-col sm:flex-row items-center justify-center gap-6" style="transition-delay: 300ms;">
+                <a href="https://chk.eduzz.com/VWGNB1R407?a=33986470" target="_blank" class="group relative px-10 py-5 rounded-full bg-gradient-main text-white font-black text-lg shadow-2xl shadow-blue-500/25 hover:scale-105 transition-all flex items-center gap-2">
+                    QUERO ACESSO IMEDIATO
+                    <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                </a>
             </div>
-            <div class="feature-card">
-                <i class="fas fa-sync-alt"></i>
-                <h3>Virada de Mão 2.0</h3>
-                <p>Cálculo instantâneo de recuperação. O Hadassa vira a posição no milissegundo exato do rompimento da Zona Neutra.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-user-shield"></i>
-                <h3>Gestão de Risco Blindada</h3>
-                <p>Break Even automático no Alvo 1 e Stop Loss com "Respiro" calculado via algoritmo para evitar violinadas bobas.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-chart-line"></i>
-                <h3>Filtro de Exaustão</h3>
-                <p>O robô analisa o tamanho da vela de rompimento. Se for um movimento de exaustão, ele cancela a entrada para te proteger.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-ban"></i>
-                <h3>Trava de Meta Diária</h3>
-                <p>Bateu o Take ou o Stop Limite? O robô trava a plataforma. Sua disciplina agora é garantida por código.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-desktop"></i>
-                <h3>Painel HUD Profissional</h3>
-                <p>Visualize em tempo real o status da operação, níveis de projeção e métricas de desempenho direto no gráfico.</p>
+
+            <div class="fade-up mt-16 flex flex-wrap items-center justify-center gap-8 text-xs font-bold text-zinc-500 uppercase tracking-widest" style="transition-delay: 400ms;">
+                <div class="flex items-center gap-2"><i data-lucide="shield-check" class="w-4 h-4 text-emerald-500"></i> Garantia de 7 Dias</div>
+                <div class="flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-emerald-500"></i> Acesso Vitalício</div>
+                <div class="flex items-center gap-2"><i data-lucide="lock" class="w-4 h-4 text-emerald-500"></i> Sem Limites de Contas</div>
             </div>
         </div>
     </section>
 
-    <section class="testimonials">
-        <div class="container">
-            <h2 class="section-title" style="margin-bottom: 40px;">Quem usa, <span>Aprova</span></h2>
-            <div class="testi-grid">
-                <div class="testi-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"O que eu levava 2 minutos pra calcular, o Hadassa faz em 1 segundo. Minha taxa de acerto subiu porque parei de hesitar."</p>
-                    <br><strong>- Ricardo M., Trader de Índice</strong>
+    <section id="features" class="py-32 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <div class="fade-up">
+                    <h2 class="text-4xl md:text-6xl font-display font-black mb-6 uppercase tracking-tighter">Por que os Traders falham?</h2>
+                    <p class="text-zinc-400 max-w-2xl mx-auto">A maioria dos traders perde dinheiro por fatores Emocionais. A Hadassa IA elimina essas fraquezas.</p>
                 </div>
-                <div class="testi-card">
-                    <div class="stars">★★★★★</div>
-                    <p>"A virada de mão automática salvou meu capital várias vezes. O robô não tem medo de estopar e virar, ele apenas executa."</p>
-                    <br><strong>- Ana Paula, Operadora de Forex</strong>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="fade-up glass p-8 rounded-[32px] group hover:border-blue-500/50 transition-all duration-500">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="brain" class="w-7 h-7 text-blue-500"></i>
+                    </div>
+                    <h3 class="text-xl font-display font-bold text-white mb-4">Psicológico</h3>
+                    <p class="text-zinc-400 leading-relaxed">O medo de perder faz você hesitar. O Hadassa IA não tem sentimentos: ele apenas executa o plano matemático sem desvios.</p>
+                </div>
+                <div class="fade-up glass p-8 rounded-[32px] group hover:border-blue-500/50 transition-all duration-500" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="clock" class="w-7 h-7 text-blue-500"></i>
+                    </div>
+                    <h3 class="text-xl font-display font-bold text-white mb-4">Tempo Real</h3>
+                    <p class="text-zinc-400 leading-relaxed">Você não consegue monitorar o momento do rompimento CA/C1 na abertura a noite. O robô faz isso 24 horas por dia, 5 dias por semana, sem cansaço.</p>
+                </div>
+                <div class="fade-up glass p-8 rounded-[32px] group hover:border-blue-500/50 transition-all duration-500" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                        <i data-lucide="target" class="w-7 h-7 text-blue-500"></i>
+                    </div>
+                    <h3 class="text-xl font-display font-bold text-white mb-4">Cálculo Preciso</h3>
+                    <p class="text-zinc-400 leading-relaxed">Traçar expansões manualmente gera erros de milímetros que custam caro. Na IA, a precisão é absoluta e instantânea.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="container">
-        <h2 class="section-title">Dúvidas <span>Frequentes</span></h2>
-        <div class="faq-container">
-            <details>
-                <summary>Preciso de uma conta grande para usar?</summary>
-                <p>Não. O Hadassa PCM permite configurar lotes mínimos, sendo ideal desde contas pequenas até grandes fundos.</p>
-            </details>
-            <details>
-                <summary>Funciona em quais ativos?</summary>
-                <p>Em qualquer ativo disponível no MT5: Mini Índice (WIN), Mini Dólar (WDO), Ações e todos os pares de Forex.</p>
-            </details>
-            <details>
-                <summary>O pagamento é mensalidade?</summary>
-                <p>Nesta oferta especial, o acesso é vitalício (ou anual, conforme sua escolha). Sem taxas escondidas.</p>
-            </details>
-            <details>
-                <summary>Como recebo o robô?</summary>
-                <p>Imediatamente após a confirmação do pagamento, você recebe os arquivos e os vídeos tutoriais no seu e-mail.</p>
-            </details>
+    <section id="comparison" class="py-32 bg-white/[0.02]">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <div class="fade-up">
+                    <h2 class="text-4xl md:text-6xl font-display font-black mb-6 uppercase tracking-tighter">Humano vs. Hadassa IA</h2>
+                    <p class="text-zinc-400">Para sua evolução no trading exige essa ferramenta que vai te auxiliar a pegar as ordens.</p>
+                </div>
+            </div>
+            <div class="fade-up rounded-[40px] overflow-hidden border border-white/10 bg-black/40 backdrop-blur-xl">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse min-w-[600px]">
+                        <thead>
+                            <tr class="bg-white/5">
+                                <th class="p-8 text-xs font-black uppercase tracking-widest text-zinc-500">Funcionalidade</th>
+                                <th class="p-8 text-xs font-black uppercase tracking-widest text-zinc-500">Trader Manual</th>
+                                <th class="p-8 text-xs font-black uppercase tracking-widest text-blue-500">Hadassa IA</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm">
+                            <tr class="border-t border-white/5 hover:bg-white/[0.02] transition-colors">
+                                <td class="p-8 font-bold text-white">Cálculo de Canais Fimathe</td>
+                                <td class="p-8 text-red-400/80 flex items-center gap-2"><i data-lucide="x-circle" class="w-4 h-4"></i> Impreciso / Lento</td>
+                                <td class="p-8 text-emerald-400 font-bold flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4"></i> Instantâneo</td>
+                            </tr>
+                            <tr class="border-t border-white/5 hover:bg-white/[0.02] transition-colors">
+                                <td class="p-8 font-bold text-white">Operação no Rompimento da CA+C1</td>
+                                <td class="p-8 text-red-400/80 flex items-center gap-2"><i data-lucide="x-circle" class="w-4 h-4"></i> Risco Emocional</td>
+                                <td class="p-8 text-emerald-400 font-bold flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4"></i> Proteção Automática</td>
+                            </tr>
+                            <tr class="border-t border-white/5 hover:bg-white/[0.02] transition-colors">
+                                <td class="p-8 font-bold text-white">Monitoramento 24/5</td>
+                                <td class="p-8 text-red-400/80 flex items-center gap-2"><i data-lucide="x-circle" class="w-4 h-4"></i> Limitado (Sono)</td>
+                                <td class="p-8 text-emerald-400 font-bold flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4"></i> 100% do Tempo</td>
+                            </tr>
+                            <tr class="border-t border-white/5 hover:bg-white/[0.02] transition-colors">
+                                <td class="p-8 font-bold text-white">Gerenciamento de Risco</td>
+                                <td class="p-8 text-red-400/80 flex items-center gap-2"><i data-lucide="x-circle" class="w-4 h-4"></i> Indisciplinado</td>
+                                <td class="p-8 text-emerald-400 font-bold flex items-center gap-2"><i data-lucide="check-circle-2" class="w-4 h-4"></i> Matemático pela % da conta</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section class="container" id="comprar">
-        <div class="offer-card">
-            <div class="vagas-tag">RESTAM APENAS 12 LICENÇAS COM DESCONTO</div>
-            <h2>Torne-se um Trader Profissional com o Hadassa PCM</h2>
-            <p style="margin-top: 15px;">Leve o Robô + Setups Sugeridos + Guia de Instalação</p>
-            
-            <div class="price">
-                <span>R$ 997</span><br>
-                12x R$ 49,70
+    <section id="methodology" class="py-32">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <div class="fade-up">
+                    <h2 class="text-4xl md:text-6xl font-display font-black mb-6 uppercase tracking-tighter">Operacional Fimathe Pura</h2>
+                    <p class="text-zinc-400">O robô segue rigorosamente os princípios criados por Marcelo Ferreira.</p>
+                </div>
             </div>
-            <p>Ou R$ 497,00 à vista</p>
-            
-            <a href="https://pay.hotmart.com/B104714034R" class="cta-button" style="margin-top: 30px;" target="_blank">Garantir Minha Licença Agora</a>
-
-            <div style="margin-top: 40px; display: flex; align-items: center; justify-content: center; gap: 20px;">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Seal_of_Guarantee.png" width="80" alt="Garantia" style="filter: brightness(0) invert(1);">
-                <p style="text-align: left; max-width: 400px; font-size: 0.9rem;">
-                    <strong>Garantia Blindada de 7 Dias:</strong><br>
-                    Teste o robô. Se você não se adaptar ou achar que não é para você, devolvemos seu dinheiro sem perguntas.
-                </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="fade-up relative p-10 rounded-[32px] glass overflow-hidden group">
+                    <span class="absolute top-4 right-8 text-8xl font-black text-white/[0.03] group-hover:text-blue-500/10 transition-colors">01</span>
+                    <i data-lucide="bar-chart-3" class="w-10 h-10 text-blue-500 mb-6"></i>
+                    <h3 class="text-2xl font-display font-bold text-white mb-4">Mapeamento</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">Identificação automática das Progeções e Takes.</p>
+                </div>
+                <div class="fade-up relative p-10 rounded-[32px] glass overflow-hidden group" style="transition-delay: 100ms;">
+                    <span class="absolute top-4 right-8 text-8xl font-black text-white/[0.03] group-hover:text-blue-500/10 transition-colors">02</span>
+                    <i data-lucide="shield-check" class="w-10 h-10 text-blue-500 mb-6"></i>
+                    <h3 class="text-2xl font-display font-bold text-white mb-4">Segurança</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">Filtro inteligente de CA+C1 para evitar falsos rompimentos e armadilhas.</p>
+                </div>
+                <div class="fade-up relative p-10 rounded-[32px] glass overflow-hidden group" style="transition-delay: 200ms;">
+                    <span class="absolute top-4 right-8 text-8xl font-black text-white/[0.03] group-hover:text-blue-500/10 transition-colors">03</span>
+                    <i data-lucide="trending-up" class="w-10 h-10 text-blue-500 mb-6"></i>
+                    <h3 class="text-2xl font-display font-bold text-white mb-4">Projeção</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">Alvos matemáticos baseados em 50%, 100% e 200% da expansão Fimathe.</p>
+                </div>
+                <div class="fade-up relative p-10 rounded-[32px] glass overflow-hidden group" style="transition-delay: 300ms;">
+                    <span class="absolute top-4 right-8 text-8xl font-black text-white/[0.03] group-hover:text-blue-500/10 transition-colors">04</span>
+                    <i data-lucide="zap" class="w-10 h-10 text-blue-500 mb-6"></i>
+                    <h3 class="text-2xl font-display font-bold text-white mb-4">Trailing</h3>
+                    <p class="text-zinc-400 text-sm leading-relaxed">Proteção de lucro, Break Even automático.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div class="container">
-            <p><strong>Hadassa PCM - Tecnologia para Traders</strong></p>
-            <p style="margin: 20px 0;">Aviso de Risco: Negociar ativos financeiros envolve riscos. Certifique-se de compreender os riscos envolvidos e nunca invista dinheiro que não possa perder. O software é uma ferramenta de auxílio, e os resultados dependem do mercado.</p>
-            <p>&copy; 2024 Todos os direitos reservados. Requisito técnico: MetaTrader 5 (Windows).</p>
-        </div>
-    </footer>
+    <section id="faq" class="py-32 bg-white/[0.02]">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <div class="fade-up">
+                    <h2 class="text-4xl md:text-6xl font-display font-black mb-6 uppercase tracking-tighter">FAQ</h2>
+                    <p class="text-zinc-400">Tire suas dúvidas sobre o funcionamento do Hadassa IA.</p>
+                </div>
+            </div>
 
-</body>
-</html>
+            <div class="fade-up glass p-8 rounded-[40px] mb-20">
+                <div class="border-b border-white/10 last:border-0">
+                    <button onclick="toggleFAQ(this)" class="w-full py-6 flex items-center justify-between text-left group">
+                        <span class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">Funciona em quais ativos?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-zinc-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 opacity-0 overflow-hidden transition-all duration-300">
+                        <p class="pb-6 text-zinc-400 leading-relaxed">O Hadassa IA é versátil e funciona em qualquer ativo disponível no MetaTrader 5: HK50, Ouro (XAUUSD), Índices (Nasdaq, S&P500), Forex.</p>
+                    </div>
+                </div>
+                <div class="border-b border-white/10 last:border-0">
+                    <button onclick="toggleFAQ(this)" class="w-full py-6 flex items-center justify-between text-left group">
+                        <span class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">Até quantas contas eu posso ter nesse plano?</span>
+                        <i data-lucide="chevron-down" class="w-5 h-5 text-zinc-500 transition-transform duration-300"></i>
+                    </button>
+                    <div class="faq-answer max-h-0 opacity-0 overflow-hidden transition-all duration-300">
+                        <p class="pb-6 text-zinc-400 leading-relaxed">Não existe limite de contas, você pode utilizar qualquer conta em qualquer corretora.</p>
+                    </div>
+                </div>
+                <div class="border-b border-white/10 last:border-0">
+                    <button onclick="toggleFAQ(this)" class="w-full py-6 flex items-center justify-between text-left group">
+                        <span class="text-lg font-bold text-white group-hover:text-blue-400 transition-colors">O suporte ajuda na instal
